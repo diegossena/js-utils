@@ -1,12 +1,7 @@
 /**
  * @author Diego Sena <diego.souza.sena10@gmail.com>
- * @template T
- * @param {T[]} array
- * @param {number} old_index
- * @param {number} new_index
- * @returns {T[]}
  */
-function arrayMoveElement(array, old_index, new_index) {
+ function arrayMoveElement<T>(array: T[], old_index: number, new_index: number) {
   array.splice(
     new_index,
     0,
