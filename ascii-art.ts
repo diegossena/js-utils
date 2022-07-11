@@ -1,5 +1,5 @@
 import alphabetPosition from './alphabetPosition'
-const basicFont = [
+export const basicFont = [
   ' #  ##   ## ##  ### ###  ## # # ###  ## # # #   # # ###  #  ##   #  ##   ## ### # # # # # # # # # # ### ###',
   '# # # # #   # # #   #   #   # #  #    # # # #   ### # # # # # # # # # # #    #  # # # # # # # # # #   #   #',
   '### ##  #   # # ##  ##  # # ###  #    # ##  #   ### # # # # ##  # # ##   #   #  # # # # ###  #   #   #   ##',
@@ -8,8 +8,10 @@ const basicFont = [
 ]
 /**
  * @author Diego Sena <diego.souza.sena10@gmail.com>
+ * @param {string[]} font
+ * @return {(str: string) => string}
  */
-function asciiArt(font: string[]) {
+export default function asciiArt(font: string[]): string {
   let x = 1
   while (++x < font[0].length) {
     let y = font.length
