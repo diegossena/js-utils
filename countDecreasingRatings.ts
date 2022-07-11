@@ -2,7 +2,7 @@
  * @param {number[]} ratings
  * @return {number}
  */
-function countDecreasingRatings(ratings: number[]): number {
+export default function countDecreasingRatings(ratings: number[]): number {
   if (ratings.length <= 1 || ratings.length > 10 ** 5)
     throw Error('Invalid ratings length')
   if (ratings.filter(rating => rating > 0 && rating <= 10 ** 9).length !== ratings.length)
