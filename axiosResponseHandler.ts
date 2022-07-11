@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios'
+import type { AxiosResponse } from 'axios'
 /**
  * @author Diego Sena <diego.souza.sena10@gmail.com>
  * @template T
