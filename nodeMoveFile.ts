@@ -1,27 +1,28 @@
+import { createReadStream, createWriteStream, unlinkSync } from 'fs'
 /**
  * @author Diego Sena <diego.souza.sena10@gmail.com>
  * @param {string} src
- * @param {string} dest 
+ * @param {string} dest
  * @return {Promise<void>}
  */
-function moveFile(src, dest) {
+export default function moveFile(src: string, dest: string): Promise<void> {
   return new Promise((resolve, reject) => {
-    const rs = fs.createReadStream(src)
-    const ws = fs.createWriteStream(dest)
+    const rs = createReadStream(src)
+    const ws = createWriteStream(dest)
     function cleanup() {
       rs.off('error', handleError)
       ws.off('error', handleError)
       ws.off('close', done)
     }
     function done() {
-      fs.unlinkSync(src)
+      unlinkSync(src)
       cleanup()
       resolve()
     }
     /**
-     * @param {Error} error 
+     * @param {Error} error
      */
-    function handleError(error) {
+    function handleError(error: Error) {
       cleanup()
       rs.pause()
       rs.unpipe(ws)
