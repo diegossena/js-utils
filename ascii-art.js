@@ -1,32 +1,40 @@
-let i = 0
-const inputs = [
-  '4',
-  '5',
-  'M@NH@TT@N',
-  ' #  ##   ## ##  ### ###  ## # # ###  ## # # #   # # ###  #  ##   #  ##   ## ### # # # # # # # # # # ### ### ',
-  '# # # # #   # # #   #   #   # #  #    # # # #   ### # # # # # # # # # # #    #  # # # # # # # # # #   #   # ',
-  '### ##  #   # # ##  ##  # # ###  #    # ##  #   ### # # # # ##  # # ##   #   #  # # # # ###  #   #   #   ## ',
-  '# # # # #   # # #   #   # # # #  #  # # # # #   # # # # # # #    ## # #   #  #  # # # # ### # #  #  #       ',
-  '# # ##   ## ##  ### #    ## # # ###  #  # # ### # # # #  #  #     # # # ##   #  ###  #  # # # #  #  ###  #  '
+const basicFont = [
+  ' #  ##   ## ##  ### ###  ## # # ###  ## # # #   # # ###  #  ##   #  ##   ## ### # # # # # # # # # # ### ###',
+  '# # # # #   # # #   #   #   # #  #    # # # #   ### # # # # # # # # # # #    #  # # # # # # # # # #   #   #',
+  '### ##  #   # # ##  ##  # # ###  #    # ##  #   ### # # # # ##  # # ##   #   #  # # # # ###  #   #   #   ##',
+  '# # # # #   # # #   #   # # # #  #  # # # # #   # # # # # # #    ## # #   #  #  # # # # ### # #  #  #      ',
+  '# # ##   ## ##  ### #    ## # # ###  #  # # ### # # # #  #  #     # # # ##   #  ###  #  # # # #  #  ###  # '
 ]
-function readline() {
-  return inputs[i++]
-}
-
-const L = parseInt(readline())
-const H = parseInt(readline())
-const T = readline().toUpperCase()
-
-let answer = ''
-
-for (let i = 0; i < H; i++) {
-  const ROW = readline()
-  for (const char of T) {
-    const char_index = char.charCodeAt() === 63 || !/[a-z]/i.test(char)
-      ? 26
-      : char.charCodeAt() - 65
-    answer += ROW.slice(char_index * L, char_index * L + L)
+/**
+ * @author Diego Sena <diego.souza.sena10@gmail.com>
+ * @param {string[]} font
+ * @return {(str: string) => string}
+ */
+function asciiArt(font) {
+  let x = 1
+  while (++x < font[0].length) {
+    let y = font.length
+    while (--y) {
+      if (font[y][x] !== ' ')
+        break
+    }
+    if (!y)
+      break
   }
-  answer += '\n'
+  const height = font.length
+  const width = x
+  return str => (
+    Array.from(Array(height), (_, y) => (
+      Array.from(str, char => {
+        char = char.toLowerCase().replace(/[^a-z]/g, '?')
+        const char_index = char === '?' ? 26 : char.charCodeAt() - 97
+        const letter_start = (
+          char_index // spaces between letters
+          + char_index * width
+        )
+        const letter_end = letter_start + width
+        return font[y].slice(letter_start, letter_end)
+      }).join(' ')
+    )).join('\n')
+  )
 }
-console.log(answer)
