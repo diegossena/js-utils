@@ -1,3 +1,4 @@
+import alphabetPosition from './alphabetPosition'
 const basicFont = [
   ' #  ##   ## ##  ### ###  ## # # ###  ## # # #   # # ###  #  ##   #  ##   ## ### # # # # # # # # # # ### ###',
   '# # # # #   # # #   #   #   # #  #    # # # #   ### # # # # # # # # # # #    #  # # # # # # # # # #   #   #',
@@ -7,10 +8,8 @@ const basicFont = [
 ]
 /**
  * @author Diego Sena <diego.souza.sena10@gmail.com>
- * @param {string[]} font
- * @return {(str: string) => string}
  */
-function asciiArt(font) {
+function asciiArt(font: string[]) {
   let x = 1
   while (++x < font[0].length) {
     let y = font.length
@@ -23,11 +22,11 @@ function asciiArt(font) {
   }
   const height = font.length
   const width = x
-  return str => (
+  return (str: string) => (
     Array.from(Array(height), (_, y) => (
       Array.from(str, char => {
         char = char.toLowerCase().replace(/[^a-z]/g, '?')
-        const char_index = char === '?' ? 26 : char.charCodeAt() - 97
+        const char_index = char === '?' ? 26 : char.charCodeAt(0) - 97
         const letter_start = (
           char_index // spaces between letters
           + char_index * width
