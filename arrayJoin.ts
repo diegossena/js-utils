@@ -5,6 +5,6 @@
  * @param {T} separator
  * @return {T[]}
  */
-function arrayJoin(array, separator) {
+function arrayJoin<T>(array: T[], separator: T): T[] {
   return array.flatMap((element, i) => i ? [separator, element] : [element])
 }
