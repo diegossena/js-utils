@@ -1,33 +1,54 @@
-const message = 'CC'
-
-const binary = [...message]
-  .map(char => {
-    let binary = char.charCodeAt().toString(2)
-    if (binary.length < 7) {
-      binary = Array(7 - binary.length).fill(0).join('') + binary
-    }
-    return binary
-  })
-  .join('')
-let encoded_chars = []
-let current_binary_char_i = 0
-do {
-  const current_binary_char = binary[current_binary_char_i]
-  const binary_value = current_binary_char == 1
-  const next_binary_char_i = binary.indexOf(
-    binary_value ? 0 : 1,
-    current_binary_char_i
-  )
-  const binary_char_interval = binary.slice(
-    current_binary_char_i,
-    next_binary_char_i === -1 ? Infinity : next_binary_char_i
-  )
-  encoded_chars.push(
-    (binary_value ? '0' : '00')
-    + ' '
-    + Array(binary_char_interval.length).fill('0').join('')
-  )
-  current_binary_char_i += binary_char_interval.length
-} while (current_binary_char_i < binary.length)
-const encoded_message = encoded_chars.join('')
-console.log(encoded_message)
+const one = '0'
+const zero = '00'
+/**
+ * @param {string} str
+ * @return {string}
+ */
+export function encode(str: string): string {
+  const bin = Array.from(str, char => {
+    const bin = char.charCodeAt(0).toString(2)
+    return '00000000'.slice(bin.length) + bin
+  }).join('')
+  console.log({ bin })
+  let code = ''
+  let i = 0
+  do {
+    const current = bin[i]
+    code += ' ' + (current === '0' ? zero : one) + ' '
+    do {
+      code += '0'
+    } while (current === bin[++i] && i < bin.length)
+  } while (i < bin.length)
+  return code.slice(1)
+}
+/**
+ * @param {string} code
+ * @return {string}
+ */
+export function decode(code: string): string {
+  const bin = code
+    .split(' ')
+    .map((sequence, i, array) => (
+      i % 2
+        ? Array(sequence.length)
+          .fill(array[i - 1] === zero ? 0 : 1)
+          .join('')
+        : null
+    ))
+    .filter(o => o)
+    .join('')
+  return Array
+    .from(
+      Array(bin.length / 8),
+      (_, i) => {
+        const start = i * 8
+        console.log(i, bin.slice(start, start + 8))
+        return String.fromCharCode(
+          parseInt(
+            bin.slice(start, start + 8),
+            2
+          )
+        )
+      }
+    ).join('')
+}
