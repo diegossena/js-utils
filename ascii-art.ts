@@ -26,7 +26,7 @@ function asciiArt(font: string[]) {
     Array.from(Array(height), (_, y) => (
       Array.from(str, char => {
         char = char.toLowerCase().replace(/[^a-z]/g, '?')
-        const char_index = char === '?' ? 26 : char.charCodeAt(0) - 97
+        const char_index = char === '?' ? 26 : alphabetPosition(char)
         const letter_start = (
           char_index // spaces between letters
           + char_index * width
