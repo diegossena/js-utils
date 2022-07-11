@@ -9,7 +9,7 @@ let sequence = 0n
  * @author Diego Sena <diego.souza.sena10@gmail.com>
  * @return {string}
  */
-function getUniqueID() {
+export default function getUniqueID(): string {
   const currentTime = BigInt(Date.now())
   const currentTimestamp = currentTime - epoch
 
