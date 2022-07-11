@@ -1,4 +1,8 @@
-function linguaDoP(frase = '') {
+/**
+ * @param {string} frase
+ * @return {string}
+ */
+function linguaDoP(frase: string): string {
   const vogais = ['a', 'e', 'i', 'o', 'u']
   const others = ['r', 'l']
   return frase.split(' ')
@@ -33,7 +37,3 @@ function linguaDoP(frase = '') {
     })
     .join(' ')
 }
-[
-  'frase de teste',
-  'outra frase para teste'
-].map(linguaDoP)
