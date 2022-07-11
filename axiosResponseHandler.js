@@ -1,4 +1,5 @@
 /**
+ * @author Diego Sena <diego.souza.sena10@gmail.com>
  * @template T
  * @param {Promise<AxiosResponse<T>>} response
  * @template S
