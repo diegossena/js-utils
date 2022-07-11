@@ -1,4 +1,5 @@
 /**
+ * @author Diego Sena <diego.souza.sena10@gmail.com>
  * @param {string} text}
  */
 function alphabetPosition(text) {
