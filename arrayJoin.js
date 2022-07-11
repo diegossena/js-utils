@@ -6,4 +6,5 @@
  * @return {T[]}
  */
 function arrayJoin(array, separator) {
-  return
+  return array.flatMap((element, i) => i ? [separator, element] : [element])
+}
