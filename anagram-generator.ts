@@ -1,11 +1,12 @@
 /**
  * @author Diego Sena <diego.souza.sena10@gmail.com>
- * @param {Object} opt
- * @param {string[]} opt.input
- * @param {string[]} opt.usedChars
- * @param {string[]} opt.permutes
  */
-function permute(opt) {
+interface PermuteOptions {
+  input: string[]
+  usedChars: string[]
+  permutes: string[]
+}
+function permute(opt: PermuteOptions) {
   const { input, permutes, usedChars } = opt
   // Loop through every letter
   for (let i = 0; i < input.length; i++) {
@@ -27,8 +28,7 @@ function permute(opt) {
 }
 /**
  * @author Diego Sena <diego.souza.sena10@gmail.com>
- * @param {string} str
  */
-function anagrams(str) {
+function anagrams(str: string) {
   return permute({ input: Array.from(str), permutes: [], usedChars: [] })
 }
