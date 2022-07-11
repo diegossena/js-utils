@@ -36,6 +36,6 @@ function permute(opt: PermuteOptions): string[] {
  * @param {string} str
  * @return {string[]}
  */
-function anagrams(str: string): string[] {
+export default function anagrams(str: string): string[] {
   return permute({ input: Array.from(str), permutes: [], usedChars: [] })
 }
