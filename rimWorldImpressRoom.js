@@ -1,4 +1,3 @@
-function space(tiles=0) { return tiles*1.4 }
 function rimWorldImpressRoom(
   wealth = 0,
   space = 0,
