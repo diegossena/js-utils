@@ -1,8 +1,8 @@
 
 function rimWorldImpressRoom(
   wealth = 0,
-  beauty = 0,
   space = 0,
+  beauty = 0,
   cleanliness = 0,
 ) {
   const Wb = wealth / 1500
